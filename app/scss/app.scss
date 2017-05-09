@@ -1,25 +1,26 @@
 /* app css stylesheet */
+$font-size: 6rem;
+$med-size: 3rem;
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.6em;
+body {
+  background-color: #000000;
+  color: #ffffff;
 }
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.main {
+  text-align: center;
+  font-size: $font-size;
+  line-height: 1.1;
+  img {
+    width: 15%;
+  }
+  p:nth-child(3) {
+    margin-top: 1em;
+  }
+  .med-size {
+    font-size: $med-size;
+  }
+  .temp-type {
+    cursor: pointer;
+    color: #0000FF;
+  }
 }
