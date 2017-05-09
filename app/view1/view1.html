@@ -1,13 +1,15 @@
 <div class="container">
     <div class="row">
-        <div class="">
-            <div class="main">
-                <p>Free C<i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>de Camp</p>
-                <p>Weather App</p>
+        <div class="main">
+            <p>Free C<i class="glyphicon glyphicon-cloud" aria-hidden="true"></i>de Camp</p>
+            <p>Weather App</p>
+            <div ng-show="isComplete">
                 <p class="med-size">{{name}}, {{country}}</p>
-                <div class="med-size" ng-show="far" class="temp">{{temp | number : 1}}&deg;<span class="temp-type" ng-click="swapTemp()"> F</span>
+                <div class="med-size" ng-show="far" class="temp">{{temp | number : 1}}&deg;<span class="temp-type"
+                                                                                                 ng-click="swapTemp()"> F</span>
                 </div>
-                <div class="med-size" ng-show="!far" class="temp">{{temp | number : 1}}&deg;<span class="temp-type" ng-click="swapTemp()"> C</span>
+                <div class="med-size" ng-show="!far" class="temp">{{temp | number : 1}}&deg;<span class="temp-type"
+                                                                                                  ng-click="swapTemp()"> C</span>
                 </div>
                 <div class="med-size">{{descr}}</div>
                 <img ng-src="http://openweathermap.org/img/w/{{icon}}.png">

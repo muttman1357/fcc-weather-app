@@ -10,23 +10,38 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope', '$http', function($scope, $http) {
+  $scope.isComplete = false;
   $scope.far = true;
   $scope.data = {};
-  $scope.temp = $scope.main
+  var latitude = 0,
+      longitude = 0;
 
-  $http({
-     method: "GET",
-     url: 'http://api.openweathermap.org/data/2.5/weather?q=Sanford,nc&appid=192ec8501562aee106a44018e236f502',
-  }).then(function(res) {
-      $scope.data = res.data;
-      $scope.temp = kelToFar($scope.data.main.temp);
-      $scope.descr = $scope.data.weather[0].main;
-      $scope.icon = $scope.data.weather[0].icon;
-      $scope.country = $scope.data.sys.country;
-      $scope.name = $scope.data.name;
-  }, function errorCallback(res) {
-       $scope.data = res.status;
-  });
+    if ("geolocation" in navigator) {
+        /* geolocation is available */
+        navigator.geolocation.getCurrentPosition(function(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+
+            $http({
+                method: "GET",
+                url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=192ec8501562aee106a44018e236f502',
+            }).then(function(res) {
+                $scope.data = res.data;
+                $scope.temp = kelToFar($scope.data.main.temp);
+                $scope.descr = $scope.data.weather[0].main;
+                $scope.icon = $scope.data.weather[0].icon;
+                $scope.country = $scope.data.sys.country;
+                $scope.name = $scope.data.name;
+                $scope.isComplete = true;
+            }, function errorCallback(res) {
+                $scope.data = res.status;
+            });
+        });
+
+    } else {
+        /* geolocation IS NOT available */
+        console.log('not available');
+    }
 
   function kelToFar(temp) {
       return 9/5 * (temp - 273) + 32;
