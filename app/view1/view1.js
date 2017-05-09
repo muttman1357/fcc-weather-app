@@ -24,7 +24,6 @@ angular.module('myApp.view1', ['ngRoute'])
       $scope.icon = $scope.data.weather[0].icon;
       $scope.country = $scope.data.sys.country;
       $scope.name = $scope.data.name;
-      console.log($scope.data);
   }, function errorCallback(res) {
        $scope.data = res.status;
   });
